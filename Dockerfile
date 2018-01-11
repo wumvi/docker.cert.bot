@@ -1,6 +1,8 @@
 FROM wumvi/php
 MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 
+LABEL version="1.0"
+
 ENV LOG_FILES /var/log/cron.log /var/log/certbot-renew.log
 
 ADD common-files/lib-utils  /
