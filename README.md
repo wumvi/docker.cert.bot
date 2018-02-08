@@ -3,7 +3,7 @@ certbot certonly --agree-tos --email $EMAIL -d $DOMAIN --standalone --preferred-
 
 
 docker volume create domain.ssl
-docker run --restart always -ti -d -e CONTAINER=domain -v domain.ssl:/etc/letsencrypt/ -v /var/run/docker.sock:/var/run/docker.sock -e EMAIL=login@mymail.ru -e DOMAIN=domain --hostname certbot --name certbot wumvi/certbot
+docker run --restart always -ti -d -e CONTAINER=domain -p 80:80 -v domain.ssl:/etc/letsencrypt/ -v /var/run/docker.sock:/var/run/docker.sock -e EMAIL=login@mymail.ru -e DOMAIN=domain --hostname certbot --name certbot wumvi/certbot
 
 docker exec -ti certbot bash
 
