@@ -1,2 +1,2 @@
 SHELL=/bin/bash
-* * */5 * * /update-ssl.sh >> /dev/stdout
+* * */5 * * php /cron.ssl/cron.php >> /dev/stdout

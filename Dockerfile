@@ -6,7 +6,7 @@ LABEL version="1.0.1"
 ADD certbot/cmd/  /
 ADD conf/ /root/conf/
 
-ENV CODE_UPDATE_FOLDER /docker-exec/
+ENV CODE_UPDATE_FOLDER /cron.ssl/
 
 RUN DEBIAN_FRONTEND=noninteractive && \
     rm /etc/apt/sources.list && \
