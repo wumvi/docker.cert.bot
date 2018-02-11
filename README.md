@@ -27,3 +27,9 @@ mail -s "CERTBOT Renewals" $EMAIL
 
 
 docker inspect --format='{{json .State.Health}}' cron
+
+
+sqlite3 /etc/letsencrypt/domains.sqlite
+select * from domains;
+select * from containers;
+.quit

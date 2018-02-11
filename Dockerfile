@@ -10,7 +10,7 @@ ENV CODE_UPDATE_FOLDER /cron.ssl/
 
 RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get --no-install-recommends -qq -y install wget vim git gnupg apt-transport-https lsb-release ca-certificates procps cron certbot openssl && \
+    apt-get --no-install-recommends -qq -y install wget vim git gnupg apt-transport-https sqlite3 lsb-release ca-certificates procps cron certbot openssl && \
 	#
 	cd / && \
 	git clone https://github.com/wumvi/docker.exec.git $CODE_UPDATE_FOLDER --depth=1 && \

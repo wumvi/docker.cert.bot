@@ -15,6 +15,9 @@ wait_exit() {
     done
 }
 
+mkdir -p /etc/letsencrypt/www/
+chmod a+x /etc/letsencrypt/www/
+
 /etc/init.d/cron start
 wait_signal
 /etc/init.d/cron stop
