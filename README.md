@@ -24,3 +24,6 @@ openssl x509 -checkend 432000 -noout -in /etc/letsencrypt/live/$DOMAIN_FOLDER/ce
 
 apt-get --no-install-recommends -qq -y install sendmail
 mail -s "CERTBOT Renewals" $EMAIL
+
+
+docker inspect --format='{{json .State.Health}}' cron

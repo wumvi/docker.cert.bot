@@ -1,7 +1,7 @@
 FROM wumvi/php.base
 MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 
-LABEL version="1.0.1"
+LABEL version="1.0.2"
 
 ADD cmd/  /
 ADD conf/ /root/conf/
@@ -9,15 +9,7 @@ ADD conf/ /root/conf/
 ENV CODE_UPDATE_FOLDER /cron.ssl/
 
 RUN DEBIAN_FRONTEND=noninteractive && \
-    rm /etc/apt/sources.list && \
-    echo "deb http://mirror.yandex.ru/debian stretch main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb-src http://mirror.yandex.ru/debian stretch main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb http://security.debian.org/ stretch/updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb-src http://security.debian.org/ stretch/updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb http://mirror.yandex.ru/debian/ stretch-updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb-src http://mirror.yandex.ru/debian/ stretch-updates main contrib non-free" >> /etc/apt/sources.list && \
     apt-get update && \
-	#
     apt-get --no-install-recommends -qq -y install wget vim git gnupg apt-transport-https lsb-release ca-certificates procps cron certbot openssl && \
 	#
 	cd / && \
@@ -27,6 +19,8 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	rm -rf .git && \
 	#
 	crontab /root/conf/crontab.txt && \
+	mkdir -p /var/log/letsencrypt/ && \
+    ln -s /dev/stdout /var/log/letsencrypt/letsencrypt.log && \
 	#
     chmod +x /*.sh && \
 	#
@@ -36,6 +30,8 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	#
 	echo 'end'
 
-WORKDIR /root/
+WORKDIR /cron.ssl/
 
-CMD [ "cron" ]
+CMD [ "/start.sh"]
+
+HEALTHCHECK --interval=1m --timeout=1s CMD find /tmp/ . -cmin -3 -name cron_healthcheck.txt | egrep '.*'
