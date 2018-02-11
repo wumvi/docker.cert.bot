@@ -19,8 +19,6 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	rm -rf .git && \
 	#
 	crontab /root/conf/crontab.txt && \
-	mkdir -p /var/log/letsencrypt/ && \
-    ln -s /dev/stdout /var/log/letsencrypt/letsencrypt.log && \
 	#
     chmod +x /*.sh && \
 	#
