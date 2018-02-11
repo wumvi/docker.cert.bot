@@ -3,7 +3,7 @@ MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 
 LABEL version="1.0.1"
 
-ADD certbot/cmd/  /
+ADD cmd/  /
 ADD conf/ /root/conf/
 
 ENV CODE_UPDATE_FOLDER /cron.ssl/
