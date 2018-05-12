@@ -1,7 +1,7 @@
 FROM wumvi/php.base
 MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 
-LABEL version="1.0.2"
+LABEL version="1.0.3"
 
 ADD cmd/  /
 ADD conf/ /root/conf/
